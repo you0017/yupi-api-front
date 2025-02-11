@@ -32,6 +32,21 @@ export async function deleteInterfaceInfo(
   });
 }
 
+/** downlineInterfaceInfo POST /api/interface/downline */
+export async function downlineInterfaceInfo(
+  body: API.IdRequest,
+  options?: { [key: string]: any },
+) {
+  return request<API.BaseResponseboolean>('/api/interface/downline', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
 /** getInterfaceInfoById GET /api/interface/get */
 export async function getInterfaceInfoById(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
@@ -52,7 +67,7 @@ export async function listInterfaceInfoByPage(
   body: API.InterfaceInfoQueryRequest,
   options?: { [key: string]: any },
 ) {
-  const res = await request<API.BaseResponseListInterfaceInfo>('/api/interface/list', {
+  return request<API.BaseResponsePageInterfaceInfo>('/api/interface/list', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -60,14 +75,6 @@ export async function listInterfaceInfoByPage(
     data: body,
     ...(options || {}),
   });
-  if (res?.data){
-    return{
-      data: res.data.records,
-      success: true,
-      total: res.data.total
-    }
-  }
-  return null;
 }
 
 /** listMyInterfaceInfoByPage POST /api/interface/list/page */
@@ -76,6 +83,21 @@ export async function listMyInterfaceInfoByPage(
   options?: { [key: string]: any },
 ) {
   return request<API.BaseResponsePageInterfaceInfo>('/api/interface/list/page', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** onlineInterfaceInfo POST /api/interface/online */
+export async function onlineInterfaceInfo(
+  body: API.IdRequest,
+  options?: { [key: string]: any },
+) {
+  return request<API.BaseResponseboolean>('/api/interface/online', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

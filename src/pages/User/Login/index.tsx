@@ -148,12 +148,12 @@ const Login: React.FC = () => {
             maxWidth: '75vw',
           }}
           logo={<img alt="logo" src="/logo.svg" />}
-          title="Ant Design"
-          subTitle={'Ant Design 是西湖区最具影响力的 Web 设计规范'}
+          title="Api接口平台"
+          subTitle={'Api接口平台'}
           initialValues={{
             autoLogin: true,
           }}
-          actions={['其他登录方式 :', <ActionIcons key="icons" />]}
+          //actions={['其他登录方式 :', <ActionIcons key="icons" />]}
           onFinish={async (values) => {
             await handleSubmit(values as API.UserLoginRequest);
           }}
@@ -166,11 +166,11 @@ const Login: React.FC = () => {
               {
                 key: 'account',
                 label: '账户密码登录',
-              },
+              },/*
               {
                 key: 'mobile',
                 label: '手机号登录',
-              },
+              },*/
             ]}
           />
 
@@ -185,6 +185,9 @@ const Login: React.FC = () => {
                   size: 'large',
                   prefix: <UserOutlined />,
                 }}
+                initialValue={
+                  'yupi'
+                }
                 placeholder={'用户名: admin or user'}
                 rules={[
                   {
@@ -199,6 +202,9 @@ const Login: React.FC = () => {
                   size: 'large',
                   prefix: <LockOutlined />,
                 }}
+                initialValue={
+                  '12345678'
+                }
                 placeholder={'密码: ant.design'}
                 rules={[
                   {

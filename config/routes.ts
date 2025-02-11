@@ -13,9 +13,9 @@ export default [
     routes: [
       { path: '/admin', redirect: '/admin/sub-page' },
       //{ path: '/admin/sub-page', name: '二级管理页', component: './Admin' },
-      { name: '接口管理', icon: 'table', path: '/admin/interface', component: './TableList' },
+      { name: '接口管理', icon: 'table', path: '/admin/interface', component: './Admin/InterfaceInfo' },
     ],
   },
-  //{ path: '/', redirect: '/welcome' },
+  { path: '/', redirect: '/welcome' },
   { path: '*', layout: false, component: './404' },
 ];

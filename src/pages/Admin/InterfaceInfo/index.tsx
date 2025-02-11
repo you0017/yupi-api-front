@@ -1,4 +1,3 @@
-import { removeRule } from '@/services/ant-design-pro/api';
 import { PlusOutlined } from '@ant-design/icons';
 import type { ActionType, ProColumns, ProDescriptionsItemProps } from '@ant-design/pro-components';
 import {
@@ -11,12 +10,12 @@ import '@umijs/max';
 import { Button, Drawer, message } from 'antd';
 import React, { useRef, useState } from 'react';
 import {
-  addInterfaceInfo, deleteInterfaceInfo,
-  listInterfaceInfoByPage,
+  addInterfaceInfo, deleteInterfaceInfo, downlineInterfaceInfo,
+  listInterfaceInfoByPage, onlineInterfaceInfo,
   updateInterfaceInfo
 } from "@/services/yuapi-backend/interfaceInfoController";
-import CreateModel from "@/pages/TableList/components/CreateModel";
-import UpdateModel from "@/pages/TableList/components/UpdateModel";
+import CreateModel from "@/pages/Admin/InterfaceInfo/components/CreateModel";
+import UpdateModel from "@/pages/Admin/InterfaceInfo/components/UpdateModel";
 
 
 
@@ -39,6 +38,53 @@ const TableList: React.FC = () => {
   const [selectedRowsState, setSelectedRows] = useState<API.InterfaceInfoAddRequest[]>([]);
 
   /**
+   * @en-US online node
+   * @zh-CN 上线节点
+   *
+   * @param fields
+   */
+  const handleOnline = async (fields: API.IdRequest) => {
+    const hide = message.loading('发布中');
+    try {
+      await onlineInterfaceInfo({
+        id: fields.id,
+      });
+      hide();
+      message.success('发布成功');
+      handleUpdateModalOpen(false);
+      actionRef?.current?.reload();
+      return true;
+    } catch (error) {
+      hide();
+      message.error('发布失败,'+error.message);
+      return false;
+    }
+  };
+  /**
+   * @en-US downline node
+   * @zh-CN 下线节点
+   *
+   * @param fields
+   */
+  const handleDownline = async (fields: API.IdRequest) => {
+    const hide = message.loading('下线中');
+    try {
+      await downlineInterfaceInfo({
+        id: fields.id,
+      });
+      hide();
+      message.success('下线成功');
+      handleUpdateModalOpen(false);
+      actionRef?.current?.reload();
+      return true;
+    } catch (error) {
+      hide();
+      message.error('下线失败,'+error.message);
+      return false;
+    }
+  };
+
+  /**
    * @en-US Update node
    * @zh-CN 更新节点
    *
@@ -53,6 +99,7 @@ const TableList: React.FC = () => {
       hide();
       message.success('修改成功');
       handleUpdateModalOpen(false);
+      actionRef?.current?.reload();
       return true;
     } catch (error) {
       hide();
@@ -99,6 +146,7 @@ const TableList: React.FC = () => {
       hide();
       message.success('创建成功');
       handleModalOpen(false);
+      actionRef?.current?.reload();
       return true;
     } catch (error) {
       hide();
@@ -117,7 +165,7 @@ const TableList: React.FC = () => {
       title: "id",
       dataIndex: 'id',
       valueType: 'text',
-      hideInForm: true,
+      readonly: true
     },
     {
       title: '接口名称',
@@ -163,9 +211,7 @@ const TableList: React.FC = () => {
       valueType: 'select',
       valueEnum: {
         0: { text: '关闭', status: 'Default' },
-        1: { text: '运行中', status: 'Processing' },
-        2: { text: '已上线', status: 'Success' },
-        3: { text: '异常', status: 'Error' },
+        1: { text: '运行中', status: 'Processing' }
       },
     },
     {
@@ -191,9 +237,9 @@ const TableList: React.FC = () => {
       dataIndex: 'option',
       valueType: 'option',
       hideInForm: true,
-      render: (_, record) => [
+      render: (_, record : API.InterfaceInfo) => [
         <a
-          key="config"
+          key={"修改"+record.id}
           onClick={() => {
             handleUpdateModalOpen(true);
             setCurrentRow(record);
@@ -201,14 +247,37 @@ const TableList: React.FC = () => {
         >
           修改
         </a>,
-        <a
-          key="config"
+        record.status === 0 ?<Button
+            key={"发布"+record.id}
+            type="text"
+            onClick={() => {
+              handleOnline({id: record.id})
+              actionRef?.current?.reload();
+            }}
+        >
+          发布
+        </Button> : null,
+        record.status === 1 ?<Button
+            key={"下线"+record.id}
+            type="text"
+            danger={true}
+            onClick={() => {
+              handleDownline({id: record.id})
+              actionRef?.current?.reload();
+            }}
+        >
+          下线
+        </Button> : null,
+        <Button
+          type={"text"}
+          key={"删除"+record.id}
+          danger
           onClick={() => {
             handleRemove(record)
           }}
         >
           删除
-        </a>
+        </Button>
     ]
   }
 ]
@@ -233,7 +302,17 @@ const TableList: React.FC = () => {
             <PlusOutlined /> 新建
           </Button>,
         ]}
-        request={listInterfaceInfoByPage}
+        request={async (params) =>{
+          const res = await listInterfaceInfoByPage({
+            current: params.current,
+            pageSize: params.pageSize,
+          });
+          return {
+            data: res.data.records,
+            current: res.data.current,
+            total: res.data.total
+          }
+        }}
         columns={columns}
         rowSelection={{
           onChange: (_, selectedRows) => {
