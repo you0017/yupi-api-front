@@ -3,7 +3,7 @@
 import { request } from '@umijs/max';
 
 /** addInterfaceInfo POST /api/interface/add */
-export async function addInterfaceInfo(
+export async function addInterfaceInfoUsingPost(
   body: API.InterfaceInfoAddRequest,
   options?: { [key: string]: any },
 ) {
@@ -18,7 +18,7 @@ export async function addInterfaceInfo(
 }
 
 /** deleteInterfaceInfo POST /api/interface/delete */
-export async function deleteInterfaceInfo(
+export async function deleteInterfaceInfoUsingPost(
   body: API.DeleteRequest,
   options?: { [key: string]: any },
 ) {
@@ -33,7 +33,7 @@ export async function deleteInterfaceInfo(
 }
 
 /** downlineInterfaceInfo POST /api/interface/downline */
-export async function downlineInterfaceInfo(
+export async function downlineInterfaceInfoUsingPost(
   body: API.IdRequest,
   options?: { [key: string]: any },
 ) {
@@ -48,7 +48,7 @@ export async function downlineInterfaceInfo(
 }
 
 /** getInterfaceInfoById GET /api/interface/get */
-export async function getInterfaceInfoById(
+export async function getInterfaceInfoByIdUsingGet(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.getInterfaceInfoByIdUsingGETParams,
   options?: { [key: string]: any },
@@ -63,7 +63,7 @@ export async function getInterfaceInfoById(
 }
 
 /** listInterfaceInfoByPage POST /api/interface/list */
-export async function listInterfaceInfoByPage(
+export async function listInterfaceInfoByPageUsingPost(
   body: API.InterfaceInfoQueryRequest,
   options?: { [key: string]: any },
 ) {
@@ -78,7 +78,7 @@ export async function listInterfaceInfoByPage(
 }
 
 /** listMyInterfaceInfoByPage POST /api/interface/list/page */
-export async function listMyInterfaceInfoByPage(
+export async function listMyInterfaceInfoByPageUsingPost(
   body: API.InterfaceInfoQueryRequest,
   options?: { [key: string]: any },
 ) {
@@ -93,7 +93,7 @@ export async function listMyInterfaceInfoByPage(
 }
 
 /** onlineInterfaceInfo POST /api/interface/online */
-export async function onlineInterfaceInfo(
+export async function onlineInterfaceInfoUsingPost(
   body: API.IdRequest,
   options?: { [key: string]: any },
 ) {
@@ -108,7 +108,7 @@ export async function onlineInterfaceInfo(
 }
 
 /** updateInterfaceInfo POST /api/interface/update */
-export async function updateInterfaceInfo(
+export async function updateInterfaceInfoUsingPost(
   body: API.InterfaceInfoUpdateRequest,
   options?: { [key: string]: any },
 ) {

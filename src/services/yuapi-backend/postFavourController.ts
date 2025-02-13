@@ -3,7 +3,7 @@
 import { request } from '@umijs/max';
 
 /** doPostFavour POST /api/post_favour/ */
-export async function doPostFavour(
+export async function doPostFavourUsingPost(
   body: API.PostFavourAddRequest,
   options?: { [key: string]: any },
 ) {
@@ -18,7 +18,7 @@ export async function doPostFavour(
 }
 
 /** listFavourPostByPage POST /api/post_favour/list/page */
-export async function listFavourPostByPage(
+export async function listFavourPostByPageUsingPost(
   body: API.PostFavourQueryRequest,
   options?: { [key: string]: any },
 ) {
@@ -33,7 +33,7 @@ export async function listFavourPostByPage(
 }
 
 /** listMyFavourPostByPage POST /api/post_favour/my/list/page */
-export async function listMyFavourPostByPage(
+export async function listMyFavourPostByPageUsingPost(
   body: API.PostQueryRequest,
   options?: { [key: string]: any },
 ) {

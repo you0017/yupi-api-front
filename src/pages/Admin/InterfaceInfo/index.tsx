@@ -10,9 +10,9 @@ import '@umijs/max';
 import { Button, Drawer, message } from 'antd';
 import React, { useRef, useState } from 'react';
 import {
-  addInterfaceInfo, deleteInterfaceInfo, downlineInterfaceInfo,
-  listInterfaceInfoByPage, onlineInterfaceInfo,
-  updateInterfaceInfo
+  addInterfaceInfoUsingPost, deleteInterfaceInfoUsingPost, downlineInterfaceInfoUsingPost,
+  listInterfaceInfoByPageUsingPost, onlineInterfaceInfoUsingPost,
+  updateInterfaceInfoUsingPost
 } from "@/services/yuapi-backend/interfaceInfoController";
 import CreateModel from "@/pages/Admin/InterfaceInfo/components/CreateModel";
 import UpdateModel from "@/pages/Admin/InterfaceInfo/components/UpdateModel";
@@ -46,7 +46,7 @@ const TableList: React.FC = () => {
   const handleOnline = async (fields: API.IdRequest) => {
     const hide = message.loading('发布中');
     try {
-      await onlineInterfaceInfo({
+      await onlineInterfaceInfoUsingPost({
         id: fields.id,
       });
       hide();
@@ -69,7 +69,7 @@ const TableList: React.FC = () => {
   const handleDownline = async (fields: API.IdRequest) => {
     const hide = message.loading('下线中');
     try {
-      await downlineInterfaceInfo({
+      await downlineInterfaceInfoUsingPost({
         id: fields.id,
       });
       hide();
@@ -92,8 +92,12 @@ const TableList: React.FC = () => {
    */
   const handleUpdate = async (fields: API.InterfaceInfoAddRequest) => {
     const hide = message.loading('修改中');
+    if (!currentRow){
+      return ;
+    }
     try {
-      await updateInterfaceInfo({
+      await updateInterfaceInfoUsingPost({
+        id: currentRow.id,
         ...fields,
       });
       hide();
@@ -118,7 +122,7 @@ const TableList: React.FC = () => {
     const hide = message.loading('正在删除');
     if (!record) return true;
     try {
-      await deleteInterfaceInfo({
+      await deleteInterfaceInfoUsingPost({
         ...record
       });
       hide();
@@ -140,7 +144,7 @@ const TableList: React.FC = () => {
   const handleAdd = async (fields: API.InterfaceInfoAddRequest) => {
     const hide = message.loading('正在添加');
     try {
-      await addInterfaceInfo({
+      await addInterfaceInfoUsingPost({
         ...fields,
       });
       hide();
@@ -165,7 +169,8 @@ const TableList: React.FC = () => {
       title: "id",
       dataIndex: 'id',
       valueType: 'text',
-      readonly: true
+      hideInForm: true,
+      width: 80, // 固定宽度
     },
     {
       title: '接口名称',
@@ -179,11 +184,13 @@ const TableList: React.FC = () => {
           },
         ],
       },
+      width: 200, // 固定宽度
     },
     {
       title: '描述',
       dataIndex: 'description',
       valueType: 'textarea',
+      ellipsis: true, // 截断文本并显示省略号
     },
     {
       title: '请求方法',
@@ -195,15 +202,21 @@ const TableList: React.FC = () => {
       dataIndex: 'url',
       valueType: 'text'
     },
+      {
+        title: '请求参数',
+        dataIndex: 'requestParams',
+        valueType: 'jsonCode',
+        autoSize: true, // 自动调整列宽
+      },
     {
       title: '请求头',
       dataIndex: 'requestHeader',
-      valueType: 'textarea',
+      valueType: 'jsonCode',
     },
     {
       title: '响应头',
       dataIndex: 'responseHeader',
-      valueType: 'textarea',
+      valueType: 'jsonCode',
     },
     {
       title: '状态',
@@ -288,6 +301,7 @@ const TableList: React.FC = () => {
         headerTitle={'查询表格'}
         actionRef={actionRef}
         rowKey="key"
+        scroll={{ x: 'max-content' }} // 启用水平滚动条
         search={{
           labelWidth: 120,
         }}
@@ -303,7 +317,7 @@ const TableList: React.FC = () => {
           </Button>,
         ]}
         request={async (params) =>{
-          const res = await listInterfaceInfoByPage({
+          const res = await listInterfaceInfoByPageUsingPost({
             current: params.current,
             pageSize: params.pageSize,
           });
