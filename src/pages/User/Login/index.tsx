@@ -1,6 +1,6 @@
 import { Footer } from '@/components';
 import { getFakeCaptcha } from '@/services/ant-design-pro/login';
-import { userLoginUsingPost } from '@/services/yuapi-backend/userController';
+import { userLogin } from '@/services/yuapi-backend/userController';
 import {
   AlipayCircleOutlined,
   LockOutlined,
@@ -104,7 +104,7 @@ const Login: React.FC = () => {
   const handleSubmit = async (values: API.UserLoginRequest) => {
     try {
       // 登录
-      const res = await userLoginUsingPost({
+      const res = await userLogin({
         ...values,
       });
       if (res.data) {

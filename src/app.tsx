@@ -1,5 +1,5 @@
 import { AvatarDropdown, AvatarName, Footer, Question } from '@/components';
-import { getLoginUserUsingGet } from '@/services/yuapi-backend/userController';
+import { getLoginUser } from '@/services/yuapi-backend/userController';
 import { LinkOutlined } from '@ant-design/icons';
 import { SettingDrawer } from '@ant-design/pro-components';
 import type { RunTimeLayoutConfig } from '@umijs/max';
@@ -17,7 +17,7 @@ export async function getInitialState(): Promise<InitialState | undefined> {
     loginUser: undefined,
   };
   try {
-    const res = await getLoginUserUsingGet();
+    const res = await getLoginUser();
     if (res.data) {
       state.loginUser = res.data;
     }

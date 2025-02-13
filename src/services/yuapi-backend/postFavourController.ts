@@ -2,12 +2,12 @@
 /* eslint-disable */
 import { request } from '@umijs/max';
 
-/** doPostFavour POST /post_favour/ */
-export async function doPostFavourUsingPost(
+/** 此处后端没有提供注释 POST /post_favour/ */
+export async function doPostFavour(
   body: API.PostFavourAddRequest,
   options?: { [key: string]: any },
 ) {
-  return request<API.BaseResponseint>('/post_favour/', {
+  return request<API.BaseResponseInteger>('/post_favour/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -17,8 +17,8 @@ export async function doPostFavourUsingPost(
   });
 }
 
-/** listFavourPostByPage POST /post_favour/list/page */
-export async function listFavourPostByPageUsingPost(
+/** 此处后端没有提供注释 POST /post_favour/list/page */
+export async function listFavourPostByPage(
   body: API.PostFavourQueryRequest,
   options?: { [key: string]: any },
 ) {
@@ -32,8 +32,8 @@ export async function listFavourPostByPageUsingPost(
   });
 }
 
-/** listMyFavourPostByPage POST /post_favour/my/list/page */
-export async function listMyFavourPostByPageUsingPost(
+/** 此处后端没有提供注释 POST /post_favour/my/list/page */
+export async function listMyFavourPostByPage(
   body: API.PostQueryRequest,
   options?: { [key: string]: any },
 ) {

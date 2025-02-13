@@ -1,11 +1,11 @@
 declare namespace API {
-  type BaseResponseboolean = {
+  type BaseResponseBoolean = {
     code?: number;
     data?: boolean;
     message?: string;
   };
 
-  type BaseResponseint = {
+  type BaseResponseInteger = {
     code?: number;
     data?: number;
     message?: string;
@@ -23,7 +23,7 @@ declare namespace API {
     message?: string;
   };
 
-  type BaseResponselong = {
+  type BaseResponseLong = {
     code?: number;
     data?: number;
     message?: string;
@@ -59,7 +59,7 @@ declare namespace API {
     message?: string;
   };
 
-  type BaseResponsestring = {
+  type BaseResponseString = {
     code?: number;
     data?: string;
     message?: string;
@@ -81,24 +81,20 @@ declare namespace API {
     id?: number;
   };
 
-  type getInterfaceInfoByIdUsingGETParams = {
-    /** id */
-    id?: number;
+  type getInterfaceInfoByIdParams = {
+    id: number;
   };
 
-  type getPostVOByIdUsingGETParams = {
-    /** id */
-    id?: number;
+  type getPostVOByIdParams = {
+    id: number;
   };
 
-  type getUserByIdUsingGETParams = {
-    /** id */
-    id?: number;
+  type getUserByIdParams = {
+    id: number;
   };
 
-  type getUserVOByIdUsingGETParams = {
-    /** id */
-    id?: number;
+  type getUserVOByIdParams = {
+    id: number;
   };
 
   type IdRequest = {
@@ -106,220 +102,151 @@ declare namespace API {
   };
 
   type InterfaceInfo = {
-    createTime?: string;
-    description?: string;
     id?: number;
-    isDelete?: number;
-    method?: string;
     name?: string;
+    description?: string;
+    url?: string;
     requestHeader?: string;
-    requestParams?: string;
     responseHeader?: string;
     status?: number;
-    updateTime?: string;
-    url?: string;
+    method?: string;
     userId?: number;
+    createTime?: string;
+    updateTime?: string;
+    requestParams?: string;
+    isDelete?: number;
   };
 
   type InterfaceInfoAddRequest = {
-    description?: string;
-    method?: string;
     name?: string;
-    requestHeader?: string;
-    requestParams?: string;
-    responseHeader?: string;
+    description?: string;
     url?: string;
+    requestHeader?: string;
+    responseHeader?: string;
+    method?: string;
+    requestParams?: string;
+  };
+
+  type InterfaceInfoInvokeRequest = {
+    id?: number;
+    userRequestParams?: string;
   };
 
   type InterfaceInfoQueryRequest = {
     current?: number;
-    description?: string;
-    id?: number;
-    isDelete?: number;
-    method?: string;
-    name?: string;
     pageSize?: number;
-    requestHeader?: string;
-    responseHeader?: string;
     sortField?: string;
     sortOrder?: string;
-    status?: number;
+    id?: number;
+    name?: string;
+    description?: string;
     url?: string;
+    requestHeader?: string;
+    responseHeader?: string;
+    status?: number;
+    method?: string;
     userId?: number;
+    isDelete?: number;
   };
 
   type InterfaceInfoUpdateRequest = {
-    createTime?: string;
-    description?: string;
     id?: number;
-    isDelete?: number;
-    method?: string;
     name?: string;
+    description?: string;
+    url?: string;
     requestHeader?: string;
-    requestParams?: string;
     responseHeader?: string;
     status?: number;
-    updateTime?: string;
-    url?: string;
+    method?: string;
     userId?: number;
+    createTime?: string;
+    updateTime?: string;
+    isDelete?: number;
+    requestParams?: string;
   };
 
   type LoginUserVO = {
-    createTime?: string;
     id?: number;
-    updateTime?: string;
-    userAvatar?: string;
     userName?: string;
+    userAvatar?: string;
     userProfile?: string;
     userRole?: string;
-  };
-
-  type ModelAndView = {
-    empty?: boolean;
-    model?: Record<string, any>;
-    modelMap?: Record<string, any>;
-    reference?: boolean;
-    status?:
-      | 'ACCEPTED'
-      | 'ALREADY_REPORTED'
-      | 'BAD_GATEWAY'
-      | 'BAD_REQUEST'
-      | 'BANDWIDTH_LIMIT_EXCEEDED'
-      | 'CHECKPOINT'
-      | 'CONFLICT'
-      | 'CONTINUE'
-      | 'CREATED'
-      | 'DESTINATION_LOCKED'
-      | 'EXPECTATION_FAILED'
-      | 'FAILED_DEPENDENCY'
-      | 'FORBIDDEN'
-      | 'FOUND'
-      | 'GATEWAY_TIMEOUT'
-      | 'GONE'
-      | 'HTTP_VERSION_NOT_SUPPORTED'
-      | 'IM_USED'
-      | 'INSUFFICIENT_SPACE_ON_RESOURCE'
-      | 'INSUFFICIENT_STORAGE'
-      | 'INTERNAL_SERVER_ERROR'
-      | 'I_AM_A_TEAPOT'
-      | 'LENGTH_REQUIRED'
-      | 'LOCKED'
-      | 'LOOP_DETECTED'
-      | 'METHOD_FAILURE'
-      | 'METHOD_NOT_ALLOWED'
-      | 'MOVED_PERMANENTLY'
-      | 'MOVED_TEMPORARILY'
-      | 'MULTIPLE_CHOICES'
-      | 'MULTI_STATUS'
-      | 'NETWORK_AUTHENTICATION_REQUIRED'
-      | 'NON_AUTHORITATIVE_INFORMATION'
-      | 'NOT_ACCEPTABLE'
-      | 'NOT_EXTENDED'
-      | 'NOT_FOUND'
-      | 'NOT_IMPLEMENTED'
-      | 'NOT_MODIFIED'
-      | 'NO_CONTENT'
-      | 'OK'
-      | 'PARTIAL_CONTENT'
-      | 'PAYLOAD_TOO_LARGE'
-      | 'PAYMENT_REQUIRED'
-      | 'PERMANENT_REDIRECT'
-      | 'PRECONDITION_FAILED'
-      | 'PRECONDITION_REQUIRED'
-      | 'PROCESSING'
-      | 'PROXY_AUTHENTICATION_REQUIRED'
-      | 'REQUESTED_RANGE_NOT_SATISFIABLE'
-      | 'REQUEST_ENTITY_TOO_LARGE'
-      | 'REQUEST_HEADER_FIELDS_TOO_LARGE'
-      | 'REQUEST_TIMEOUT'
-      | 'REQUEST_URI_TOO_LONG'
-      | 'RESET_CONTENT'
-      | 'SEE_OTHER'
-      | 'SERVICE_UNAVAILABLE'
-      | 'SWITCHING_PROTOCOLS'
-      | 'TEMPORARY_REDIRECT'
-      | 'TOO_EARLY'
-      | 'TOO_MANY_REQUESTS'
-      | 'UNAUTHORIZED'
-      | 'UNAVAILABLE_FOR_LEGAL_REASONS'
-      | 'UNPROCESSABLE_ENTITY'
-      | 'UNSUPPORTED_MEDIA_TYPE'
-      | 'UPGRADE_REQUIRED'
-      | 'URI_TOO_LONG'
-      | 'USE_PROXY'
-      | 'VARIANT_ALSO_NEGOTIATES';
-    view?: View;
-    viewName?: string;
+    createTime?: string;
+    updateTime?: string;
   };
 
   type OrderItem = {
-    asc?: boolean;
     column?: string;
+    asc?: boolean;
   };
 
   type PageInterfaceInfo = {
-    countId?: string;
-    current?: number;
-    maxLimit?: number;
-    optimizeCountSql?: boolean;
-    orders?: OrderItem[];
-    pages?: number;
     records?: InterfaceInfo[];
-    searchCount?: boolean;
-    size?: number;
     total?: number;
+    size?: number;
+    current?: number;
+    orders?: OrderItem[];
+    optimizeCountSql?: PageInterfaceInfo;
+    searchCount?: PageInterfaceInfo;
+    optimizeJoinOfCountSql?: boolean;
+    maxLimit?: number;
+    countId?: string;
+    pages?: number;
   };
 
   type PagePostVO = {
-    countId?: string;
-    current?: number;
-    maxLimit?: number;
-    optimizeCountSql?: boolean;
-    orders?: OrderItem[];
-    pages?: number;
     records?: PostVO[];
-    searchCount?: boolean;
-    size?: number;
     total?: number;
+    size?: number;
+    current?: number;
+    orders?: OrderItem[];
+    optimizeCountSql?: PagePostVO;
+    searchCount?: PagePostVO;
+    optimizeJoinOfCountSql?: boolean;
+    maxLimit?: number;
+    countId?: string;
+    pages?: number;
   };
 
   type PageUser = {
-    countId?: string;
-    current?: number;
-    maxLimit?: number;
-    optimizeCountSql?: boolean;
-    orders?: OrderItem[];
-    pages?: number;
     records?: User[];
-    searchCount?: boolean;
-    size?: number;
     total?: number;
+    size?: number;
+    current?: number;
+    orders?: OrderItem[];
+    optimizeCountSql?: PageUser;
+    searchCount?: PageUser;
+    optimizeJoinOfCountSql?: boolean;
+    maxLimit?: number;
+    countId?: string;
+    pages?: number;
   };
 
   type PageUserVO = {
-    countId?: string;
-    current?: number;
-    maxLimit?: number;
-    optimizeCountSql?: boolean;
-    orders?: OrderItem[];
-    pages?: number;
     records?: UserVO[];
-    searchCount?: boolean;
-    size?: number;
     total?: number;
+    size?: number;
+    current?: number;
+    orders?: OrderItem[];
+    optimizeCountSql?: PageUserVO;
+    searchCount?: PageUserVO;
+    optimizeJoinOfCountSql?: boolean;
+    maxLimit?: number;
+    countId?: string;
+    pages?: number;
   };
 
   type PostAddRequest = {
+    title?: string;
     content?: string;
     tags?: string[];
-    title?: string;
   };
 
   type PostEditRequest = {
-    content?: string;
     id?: number;
-    tags?: string[];
     title?: string;
+    content?: string;
+    tags?: string[];
   };
 
   type PostFavourAddRequest = {
@@ -329,26 +256,26 @@ declare namespace API {
   type PostFavourQueryRequest = {
     current?: number;
     pageSize?: number;
-    postQueryRequest?: PostQueryRequest;
     sortField?: string;
     sortOrder?: string;
+    postQueryRequest?: PostQueryRequest;
     userId?: number;
   };
 
   type PostQueryRequest = {
-    content?: string;
     current?: number;
-    favourUserId?: number;
-    id?: number;
-    notId?: number;
-    orTags?: string[];
     pageSize?: number;
-    searchText?: string;
     sortField?: string;
     sortOrder?: string;
-    tags?: string[];
+    id?: number;
+    notId?: number;
+    searchText?: string;
     title?: string;
+    content?: string;
+    tags?: string[];
+    orTags?: string[];
     userId?: number;
+    favourUserId?: number;
   };
 
   type PostThumbAddRequest = {
@@ -356,57 +283,60 @@ declare namespace API {
   };
 
   type PostUpdateRequest = {
-    content?: string;
     id?: number;
-    tags?: string[];
     title?: string;
+    content?: string;
+    tags?: string[];
   };
 
   type PostVO = {
-    content?: string;
-    createTime?: string;
-    favourNum?: number;
-    hasFavour?: boolean;
-    hasThumb?: boolean;
     id?: number;
-    tagList?: string[];
-    thumbNum?: number;
     title?: string;
-    updateTime?: string;
-    user?: UserVO;
+    content?: string;
+    thumbNum?: number;
+    favourNum?: number;
     userId?: number;
+    createTime?: string;
+    updateTime?: string;
+    tagList?: string[];
+    user?: UserVO;
+    hasThumb?: boolean;
+    hasFavour?: boolean;
   };
 
-  type uploadFileUsingPOSTParams = {
+  type uploadFileParams = {
+    uploadFileRequest: UploadFileRequest;
+  };
+
+  type UploadFileRequest = {
     biz?: string;
   };
 
   type User = {
-    accessKey?: string;
-    createTime?: string;
     id?: number;
-    isDelete?: number;
-    mpOpenId?: string;
-    secretKey?: string;
-    unionId?: string;
-    updateTime?: string;
     userAccount?: string;
-    userAvatar?: string;
-    userName?: string;
     userPassword?: string;
+    unionId?: string;
+    mpOpenId?: string;
+    userName?: string;
+    userAvatar?: string;
     userProfile?: string;
     userRole?: string;
+    createTime?: string;
+    updateTime?: string;
+    accessKey?: string;
+    secretKey?: string;
+    isDelete?: number;
   };
 
   type UserAddRequest = {
+    userName?: string;
     userAccount?: string;
     userAvatar?: string;
-    userName?: string;
     userRole?: string;
   };
 
-  type userLoginByWxOpenUsingGETParams = {
-    /** code */
+  type userLoginByWxOpenParams = {
     code: string;
   };
 
@@ -417,47 +347,43 @@ declare namespace API {
 
   type UserQueryRequest = {
     current?: number;
-    id?: number;
-    mpOpenId?: string;
     pageSize?: number;
     sortField?: string;
     sortOrder?: string;
+    id?: number;
     unionId?: string;
+    mpOpenId?: string;
     userName?: string;
     userProfile?: string;
     userRole?: string;
   };
 
   type UserRegisterRequest = {
-    checkPassword?: string;
     userAccount?: string;
     userPassword?: string;
+    checkPassword?: string;
   };
 
   type UserUpdateMyRequest = {
-    userAvatar?: string;
     userName?: string;
+    userAvatar?: string;
     userProfile?: string;
   };
 
   type UserUpdateRequest = {
     id?: number;
-    userAvatar?: string;
     userName?: string;
+    userAvatar?: string;
     userProfile?: string;
     userRole?: string;
   };
 
   type UserVO = {
-    createTime?: string;
     id?: number;
-    userAvatar?: string;
     userName?: string;
+    userAvatar?: string;
     userProfile?: string;
     userRole?: string;
-  };
-
-  type View = {
-    contentType?: string;
+    createTime?: string;
   };
 }

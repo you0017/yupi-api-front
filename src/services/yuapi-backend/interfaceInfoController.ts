@@ -2,12 +2,12 @@
 /* eslint-disable */
 import { request } from '@umijs/max';
 
-/** addInterfaceInfo POST /interface/add */
-export async function addInterfaceInfoUsingPost(
+/** 此处后端没有提供注释 POST /interface/add */
+export async function addInterfaceInfo(
   body: API.InterfaceInfoAddRequest,
   options?: { [key: string]: any },
 ) {
-  return request<API.BaseResponselong>('/interface/add', {
+  return request<API.BaseResponseLong>('/interface/add', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -17,12 +17,12 @@ export async function addInterfaceInfoUsingPost(
   });
 }
 
-/** deleteInterfaceInfo POST /interface/delete */
-export async function deleteInterfaceInfoUsingPost(
+/** 此处后端没有提供注释 POST /interface/delete */
+export async function deleteInterfaceInfo(
   body: API.DeleteRequest,
   options?: { [key: string]: any },
 ) {
-  return request<API.BaseResponseboolean>('/interface/delete', {
+  return request<API.BaseResponseBoolean>('/interface/delete', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -32,12 +32,9 @@ export async function deleteInterfaceInfoUsingPost(
   });
 }
 
-/** downlineInterfaceInfo POST /interface/downline */
-export async function downlineInterfaceInfoUsingPost(
-  body: API.IdRequest,
-  options?: { [key: string]: any },
-) {
-  return request<API.BaseResponseboolean>('/interface/downline', {
+/** 此处后端没有提供注释 POST /interface/downline */
+export async function downlineInterfaceInfo(body: API.IdRequest, options?: { [key: string]: any }) {
+  return request<API.BaseResponseBoolean>('/interface/downline', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -47,10 +44,10 @@ export async function downlineInterfaceInfoUsingPost(
   });
 }
 
-/** getInterfaceInfoById GET /interface/get */
-export async function getInterfaceInfoByIdUsingGet(
+/** 此处后端没有提供注释 GET /interface/get */
+export async function getInterfaceInfoById(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.getInterfaceInfoByIdUsingGETParams,
+  params: API.getInterfaceInfoByIdParams,
   options?: { [key: string]: any },
 ) {
   return request<API.BaseResponseInterfaceInfo>('/interface/get', {
@@ -62,8 +59,23 @@ export async function getInterfaceInfoByIdUsingGet(
   });
 }
 
-/** listInterfaceInfoByPage POST /interface/list */
-export async function listInterfaceInfoByPageUsingPost(
+/** 此处后端没有提供注释 POST /interface/invoke */
+export async function invokeInterfaceInfo(
+  body: API.InterfaceInfoInvokeRequest,
+  options?: { [key: string]: any },
+) {
+  return request<API.BaseResponseString>('/interface/invoke', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** 此处后端没有提供注释 POST /interface/list */
+export async function listInterfaceInfoByPage(
   body: API.InterfaceInfoQueryRequest,
   options?: { [key: string]: any },
 ) {
@@ -77,8 +89,8 @@ export async function listInterfaceInfoByPageUsingPost(
   });
 }
 
-/** listMyInterfaceInfoByPage POST /interface/list/page */
-export async function listMyInterfaceInfoByPageUsingPost(
+/** 此处后端没有提供注释 POST /interface/list/page */
+export async function listMyInterfaceInfoByPage(
   body: API.InterfaceInfoQueryRequest,
   options?: { [key: string]: any },
 ) {
@@ -92,12 +104,9 @@ export async function listMyInterfaceInfoByPageUsingPost(
   });
 }
 
-/** onlineInterfaceInfo POST /interface/online */
-export async function onlineInterfaceInfoUsingPost(
-  body: API.IdRequest,
-  options?: { [key: string]: any },
-) {
-  return request<API.BaseResponseboolean>('/interface/online', {
+/** 此处后端没有提供注释 POST /interface/online */
+export async function onlineInterfaceInfo(body: API.IdRequest, options?: { [key: string]: any }) {
+  return request<API.BaseResponseBoolean>('/interface/online', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -107,12 +116,12 @@ export async function onlineInterfaceInfoUsingPost(
   });
 }
 
-/** updateInterfaceInfo POST /interface/update */
-export async function updateInterfaceInfoUsingPost(
+/** 此处后端没有提供注释 POST /interface/update */
+export async function updateInterfaceInfo(
   body: API.InterfaceInfoUpdateRequest,
   options?: { [key: string]: any },
 ) {
-  return request<API.BaseResponseboolean>('/interface/update', {
+  return request<API.BaseResponseBoolean>('/interface/update', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

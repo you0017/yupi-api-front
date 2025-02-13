@@ -1,7 +1,7 @@
 import { PageContainer } from '@ant-design/pro-components';
-import { Button, List } from 'antd';
+import { List } from 'antd';
 import React, { useEffect, useState } from 'react';
-import {listMyInterfaceInfoByPageUsingPost} from "@/services/yuapi-backend/interfaceInfoController";
+import {listMyInterfaceInfoByPage} from "@/services/yuapi-backend/interfaceInfoController";
 
 const Index: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -11,7 +11,7 @@ const Index: React.FC = () => {
 
   const loadData = async (current = 1, pageSize = 5) => {
     try {
-      const res = await listMyInterfaceInfoByPageUsingPost({
+      const res = await listMyInterfaceInfoByPage({
         current: current,
         pageSize: pageSize,
       });

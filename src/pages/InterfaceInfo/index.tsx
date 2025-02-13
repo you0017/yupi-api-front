@@ -1,22 +1,23 @@
 import { PageContainer } from '@ant-design/pro-components';
 import React, { useEffect, useState } from 'react';
-import {getInterfaceInfoByIdUsingGet} from "@/services/yuapi-backend/interfaceInfoController";
+import {getInterfaceInfoById, invokeInterfaceInfo} from "@/services/yuapi-backend/interfaceInfoController";
 import {useParams} from "@@/exports";
-import {Button, Card, Descriptions, Form, message, Typography} from 'antd';
+import {Button, Card, Descriptions, Divider, Form, message, Spin, Typography} from 'antd';
 import TextArea from "antd/es/input/TextArea";
 
 const Index: React.FC = () => {
   const [ loading, setLoading] = useState(false);
+  const [ invokeLoading, setInvokeLoading] = useState(false);
   const [ data, setData] = useState<any>();
+  const [ res, setInvokeRes] = useState<any>();
   const id = Number(useParams().id);
-
   const loadData = async () => {
     if (!id){
       message.error("参数不存在");
       return;
     }
     try {
-      const res = await getInterfaceInfoByIdUsingGet({
+      const res = await getInterfaceInfoById({
         id
       });
       setData(res?.data);
@@ -29,6 +30,27 @@ const Index: React.FC = () => {
   useEffect(() => {
     loadData();
   }, []);
+
+  const onFinish = async (values:any) => {
+    setInvokeLoading(true)
+    if (!id){
+      message.error("接口不存在");
+      return;
+    }
+    console.log(values)
+
+    try {
+      const res = await invokeInterfaceInfo({
+        id,
+        ...values
+      })
+      message.success("调用成功："+res.data);
+      setInvokeRes(res.data);
+    } catch (e) {
+      message.error("请求失败："+e.message);
+    }
+    setInvokeLoading(false)
+  }
 
   const {Text} = Typography;
 
@@ -53,27 +75,30 @@ const Index: React.FC = () => {
           </Descriptions> : <>接口不存在</>
         }
       </Card>
-      <Card>
+      <Divider/>
+      <Card title={"在线测试"}>
         <Form
           layout={"vertical"}
           name="basic"
-          onFinish={null}
-          onFinishFailed={null}
+          onFinish={onFinish}
         >
           <Form.Item<number>
             label="请求参数："
-            name="requestParams"
-            rules={[{ required: true, message: 'Please input your username!' }]}
+            name="userRequestParams"
+            rules={[{ required: true, message: '请输入参数' }]}
           >
             <TextArea/>
           </Form.Item>
 
           <Form.Item>
-            <Button type="primary" htmlType="submit" onClick={null}>
+            <Button type="primary" htmlType="submit">
               调用
             </Button>
           </Form.Item>
         </Form>
+      </Card>
+      <Card title={"测试结果"} loading={invokeLoading}>
+          {res}
       </Card>
     </PageContainer>
   );

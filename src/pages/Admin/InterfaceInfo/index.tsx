@@ -10,9 +10,9 @@ import '@umijs/max';
 import { Button, Drawer, message } from 'antd';
 import React, { useRef, useState } from 'react';
 import {
-  addInterfaceInfoUsingPost, deleteInterfaceInfoUsingPost, downlineInterfaceInfoUsingPost,
-  listInterfaceInfoByPageUsingPost, onlineInterfaceInfoUsingPost,
-  updateInterfaceInfoUsingPost
+  addInterfaceInfo, deleteInterfaceInfo, downlineInterfaceInfo,
+  listInterfaceInfoByPage, onlineInterfaceInfo,
+  updateInterfaceInfo
 } from "@/services/yuapi-backend/interfaceInfoController";
 import CreateModel from "@/pages/Admin/InterfaceInfo/components/CreateModel";
 import UpdateModel from "@/pages/Admin/InterfaceInfo/components/UpdateModel";
@@ -46,7 +46,7 @@ const TableList: React.FC = () => {
   const handleOnline = async (fields: API.IdRequest) => {
     const hide = message.loading('发布中');
     try {
-      await onlineInterfaceInfoUsingPost({
+      await onlineInterfaceInfo({
         id: fields.id,
       });
       hide();
@@ -69,7 +69,7 @@ const TableList: React.FC = () => {
   const handleDownline = async (fields: API.IdRequest) => {
     const hide = message.loading('下线中');
     try {
-      await downlineInterfaceInfoUsingPost({
+      await downlineInterfaceInfo({
         id: fields.id,
       });
       hide();
@@ -96,7 +96,7 @@ const TableList: React.FC = () => {
       return ;
     }
     try {
-      await updateInterfaceInfoUsingPost({
+      await updateInterfaceInfo({
         id: currentRow.id,
         ...fields,
       });
@@ -122,7 +122,7 @@ const TableList: React.FC = () => {
     const hide = message.loading('正在删除');
     if (!record) return true;
     try {
-      await deleteInterfaceInfoUsingPost({
+      await deleteInterfaceInfo({
         ...record
       });
       hide();
@@ -144,7 +144,7 @@ const TableList: React.FC = () => {
   const handleAdd = async (fields: API.InterfaceInfoAddRequest) => {
     const hide = message.loading('正在添加');
     try {
-      await addInterfaceInfoUsingPost({
+      await addInterfaceInfo({
         ...fields,
       });
       hide();
@@ -317,7 +317,7 @@ const TableList: React.FC = () => {
           </Button>,
         ]}
         request={async (params) =>{
-          const res = await listInterfaceInfoByPageUsingPost({
+          const res = await listInterfaceInfoByPage({
             current: params.current,
             pageSize: params.pageSize,
           });
