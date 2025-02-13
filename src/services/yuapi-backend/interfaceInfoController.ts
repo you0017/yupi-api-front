@@ -2,12 +2,12 @@
 /* eslint-disable */
 import { request } from '@umijs/max';
 
-/** addInterfaceInfo POST /api/interface/add */
+/** addInterfaceInfo POST /interface/add */
 export async function addInterfaceInfoUsingPost(
   body: API.InterfaceInfoAddRequest,
   options?: { [key: string]: any },
 ) {
-  return request<API.BaseResponselong>('/api/interface/add', {
+  return request<API.BaseResponselong>('/interface/add', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -17,12 +17,12 @@ export async function addInterfaceInfoUsingPost(
   });
 }
 
-/** deleteInterfaceInfo POST /api/interface/delete */
+/** deleteInterfaceInfo POST /interface/delete */
 export async function deleteInterfaceInfoUsingPost(
   body: API.DeleteRequest,
   options?: { [key: string]: any },
 ) {
-  return request<API.BaseResponseboolean>('/api/interface/delete', {
+  return request<API.BaseResponseboolean>('/interface/delete', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -32,12 +32,12 @@ export async function deleteInterfaceInfoUsingPost(
   });
 }
 
-/** downlineInterfaceInfo POST /api/interface/downline */
+/** downlineInterfaceInfo POST /interface/downline */
 export async function downlineInterfaceInfoUsingPost(
   body: API.IdRequest,
   options?: { [key: string]: any },
 ) {
-  return request<API.BaseResponseboolean>('/api/interface/downline', {
+  return request<API.BaseResponseboolean>('/interface/downline', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -47,13 +47,13 @@ export async function downlineInterfaceInfoUsingPost(
   });
 }
 
-/** getInterfaceInfoById GET /api/interface/get */
+/** getInterfaceInfoById GET /interface/get */
 export async function getInterfaceInfoByIdUsingGet(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.getInterfaceInfoByIdUsingGETParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.BaseResponseInterfaceInfo>('/api/interface/get', {
+  return request<API.BaseResponseInterfaceInfo>('/interface/get', {
     method: 'GET',
     params: {
       ...params,
@@ -62,12 +62,12 @@ export async function getInterfaceInfoByIdUsingGet(
   });
 }
 
-/** listInterfaceInfoByPage POST /api/interface/list */
+/** listInterfaceInfoByPage POST /interface/list */
 export async function listInterfaceInfoByPageUsingPost(
   body: API.InterfaceInfoQueryRequest,
   options?: { [key: string]: any },
 ) {
-  return request<API.BaseResponsePageInterfaceInfo>('/api/interface/list', {
+  return request<API.BaseResponsePageInterfaceInfo>('/interface/list', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -77,12 +77,12 @@ export async function listInterfaceInfoByPageUsingPost(
   });
 }
 
-/** listMyInterfaceInfoByPage POST /api/interface/list/page */
+/** listMyInterfaceInfoByPage POST /interface/list/page */
 export async function listMyInterfaceInfoByPageUsingPost(
   body: API.InterfaceInfoQueryRequest,
   options?: { [key: string]: any },
 ) {
-  return request<API.BaseResponsePageInterfaceInfo>('/api/interface/list/page', {
+  return request<API.BaseResponsePageInterfaceInfo>('/interface/list/page', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -92,12 +92,12 @@ export async function listMyInterfaceInfoByPageUsingPost(
   });
 }
 
-/** onlineInterfaceInfo POST /api/interface/online */
+/** onlineInterfaceInfo POST /interface/online */
 export async function onlineInterfaceInfoUsingPost(
   body: API.IdRequest,
   options?: { [key: string]: any },
 ) {
-  return request<API.BaseResponseboolean>('/api/interface/online', {
+  return request<API.BaseResponseboolean>('/interface/online', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -107,12 +107,12 @@ export async function onlineInterfaceInfoUsingPost(
   });
 }
 
-/** updateInterfaceInfo POST /api/interface/update */
+/** updateInterfaceInfo POST /interface/update */
 export async function updateInterfaceInfoUsingPost(
   body: API.InterfaceInfoUpdateRequest,
   options?: { [key: string]: any },
 ) {
-  return request<API.BaseResponseboolean>('/api/interface/update', {
+  return request<API.BaseResponseboolean>('/interface/update', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

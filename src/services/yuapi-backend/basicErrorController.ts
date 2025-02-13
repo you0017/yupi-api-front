@@ -2,41 +2,41 @@
 /* eslint-disable */
 import { request } from '@umijs/max';
 
-/** errorHtml GET /api/error */
+/** errorHtml GET /error */
 export async function errorHtmlUsingGet(options?: { [key: string]: any }) {
-  return request<API.ModelAndView>('/api/error', {
+  return request<API.ModelAndView>('/error', {
     method: 'GET',
     ...(options || {}),
   });
 }
 
-/** errorHtml PUT /api/error */
+/** errorHtml PUT /error */
 export async function errorHtmlUsingPut(options?: { [key: string]: any }) {
-  return request<API.ModelAndView>('/api/error', {
+  return request<API.ModelAndView>('/error', {
     method: 'PUT',
     ...(options || {}),
   });
 }
 
-/** errorHtml POST /api/error */
+/** errorHtml POST /error */
 export async function errorHtmlUsingPost(options?: { [key: string]: any }) {
-  return request<API.ModelAndView>('/api/error', {
+  return request<API.ModelAndView>('/error', {
     method: 'POST',
     ...(options || {}),
   });
 }
 
-/** errorHtml DELETE /api/error */
+/** errorHtml DELETE /error */
 export async function errorHtmlUsingDelete(options?: { [key: string]: any }) {
-  return request<API.ModelAndView>('/api/error', {
+  return request<API.ModelAndView>('/error', {
     method: 'DELETE',
     ...(options || {}),
   });
 }
 
-/** errorHtml PATCH /api/error */
+/** errorHtml PATCH /error */
 export async function errorHtmlUsingPatch(options?: { [key: string]: any }) {
-  return request<API.ModelAndView>('/api/error', {
+  return request<API.ModelAndView>('/error', {
     method: 'PATCH',
     ...(options || {}),
   });
