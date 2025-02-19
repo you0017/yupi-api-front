@@ -5,6 +5,7 @@ import '@umijs/max';
 import * as echarts from 'echarts';
 import {getTopInvokeInterfaceInfo} from "@/services/yuapi-backend/analysisController";
 import {useEffect, useRef, useState} from "react";
+import {sleep} from "@antfu/utils";
 
 
 
@@ -17,6 +18,7 @@ const Analysis: React.FC = () => {
   const [value, setValue] = useState<any>();
 
   const div = useRef(null);
+
   const getData = async () => {
     try {
       const res = await getTopInvokeInterfaceInfo();
@@ -30,14 +32,13 @@ const Analysis: React.FC = () => {
       console.error("请求失败："+e.message);
     }
   };
-
-
   useEffect(() => {
     getData();
+  }, []); // 空依赖数组，只在组件挂载时执行
+  useEffect(() => {
     var chartDom = div.current;
     var myChart = echarts.init(chartDom);
     var option: EChartsOption;
-
     option = {
       title: {
         text: '接口调用次数',
@@ -92,12 +93,11 @@ const Analysis: React.FC = () => {
               { value: 18, name: 'rose 7' },
               { value: 16, name: 'rose 8' }
             ]*/
-
         }
       ]
     };
     option && myChart.setOption(option);
-  }, []);
+  }, [key,value]);
 
 
   return (
