@@ -15,6 +15,7 @@ export default [
       { path: '/admin', redirect: '/admin/sub-page' },
       //{ path: '/admin/sub-page', name: '二级管理页', component: './Admin' },
       { name: '接口管理', icon: 'table', path: '/admin/interface', component: './Admin/InterfaceInfo' },
+      { name: '接口调用次数', icon: 'table', path: '/admin/analysis', component: './Admin/Analysis' },
     ],
   },
   { path: '/', redirect: '/welcome' },

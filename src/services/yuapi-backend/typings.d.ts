@@ -17,6 +17,12 @@ declare namespace API {
     message?: string;
   };
 
+  type BaseResponseListObject = {
+    code?: number;
+    data?: Record<string, any>[];
+    message?: string;
+  };
+
   type BaseResponseLoginUserVO = {
     code?: number;
     data?: LoginUserVO;
@@ -47,6 +53,12 @@ declare namespace API {
     message?: string;
   };
 
+  type BaseResponsePageUserInterfaceInfo = {
+    code?: number;
+    data?: PageUserInterfaceInfo;
+    message?: string;
+  };
+
   type BaseResponsePageUserVO = {
     code?: number;
     data?: PageUserVO;
@@ -71,6 +83,12 @@ declare namespace API {
     message?: string;
   };
 
+  type BaseResponseUserInterfaceInfo = {
+    code?: number;
+    data?: UserInterfaceInfo;
+    message?: string;
+  };
+
   type BaseResponseUserVO = {
     code?: number;
     data?: UserVO;
@@ -90,6 +108,10 @@ declare namespace API {
   };
 
   type getUserByIdParams = {
+    id: number;
+  };
+
+  type getUserInterfaceInfoByIdParams = {
     id: number;
   };
 
@@ -222,6 +244,20 @@ declare namespace API {
     pages?: number;
   };
 
+  type PageUserInterfaceInfo = {
+    records?: UserInterfaceInfo[];
+    total?: number;
+    size?: number;
+    current?: number;
+    orders?: OrderItem[];
+    optimizeCountSql?: PageUserInterfaceInfo;
+    searchCount?: PageUserInterfaceInfo;
+    optimizeJoinOfCountSql?: boolean;
+    maxLimit?: number;
+    countId?: string;
+    pages?: number;
+  };
+
   type PageUserVO = {
     records?: UserVO[];
     total?: number;
@@ -304,14 +340,6 @@ declare namespace API {
     hasFavour?: boolean;
   };
 
-  type uploadFileParams = {
-    uploadFileRequest: UploadFileRequest;
-  };
-
-  type UploadFileRequest = {
-    biz?: string;
-  };
-
   type User = {
     id?: number;
     userAccount?: string;
@@ -336,8 +364,45 @@ declare namespace API {
     userRole?: string;
   };
 
-  type userLoginByWxOpenParams = {
-    code: string;
+  type UserInterfaceInfo = {
+    id?: number;
+    userId?: number;
+    interfaceInfoId?: number;
+    totalNum?: number;
+    leftNum?: number;
+    status?: number;
+    createTime?: string;
+    updateTime?: string;
+    isDelete?: number;
+  };
+
+  type UserInterfaceInfoAddRequest = {
+    id?: number;
+    userId?: number;
+    interfaceInfoId?: number;
+    totalNum?: number;
+    leftNum?: number;
+    status?: number;
+  };
+
+  type UserInterfaceInfoQueryRequest = {
+    current?: number;
+    pageSize?: number;
+    sortField?: string;
+    sortOrder?: string;
+    id?: number;
+    userId?: number;
+    interfaceInfoId?: number;
+    totalNum?: number;
+    leftNum?: number;
+    status?: number;
+  };
+
+  type UserInterfaceInfoUpdateRequest = {
+    id?: number;
+    totalNum?: number;
+    leftNum?: number;
+    status?: number;
   };
 
   type UserLoginRequest = {
